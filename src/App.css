@@ -1,0 +1,44 @@
+.square{
+  width: 100px;
+  height: 100px;
+  font-size: 75px;
+  margin: 10px;
+  background-color: #6218a8;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid #545151;
+  box-shadow: 5px 2.5px 10px #000000;
+  text-shadow: 2px 2px 14px #000000;
+  vertical-align: middle;
+}
+.square:hover{
+  background-color: #44176e;
+  color: gray;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.game{
+  display: inline-flex;
+  gap: 100px;
+  justify-content: center;
+}
+.left-panel, .center-panel, .right-panel{
+  width: fit-content; 
+}
+.winner{
+  left: 192.5px;
+  top: 50px;
+  width: 75vw;
+  height: 75vh;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background-color: #6218a8;
+  border-radius: 15px;
+  box-shadow: 25px 15px 10px #000000;
+  text-shadow: 2px 2px 14px #000000;
+}
+.not-winner{
+  display: none;
+}
