@@ -12,7 +12,7 @@ const Players: { player1: string; player2: string; winner: string | undefined } 
         const [turn, setTurn]   :   [number,    (turn: number)      => void] = useState(0);
         const [value, setValue] :   [string[],  (value: string[])   => void] = useState(Array(9).fill(''));
 
-        function calculateWinner(value: string[]): string | undefined {
+        function calculateWinner(value: string[]): JSX.Element | undefined {
         const wins = [
             [0, 1, 2],
             [3, 4, 5],
@@ -32,7 +32,8 @@ const Players: { player1: string; player2: string; winner: string | undefined } 
             if(value[a] && value[a] === value[b] && value[a] === value[c]) {
                 Players.winner = value[a];
                 console.log('Winner found:', Players.winner);
-                return value[a];
+                alert(`Winner: ${Players.winner}`);
+                return <h2 className="winner">Winner: {Players.winner}</h2>;
             }
             else{
                 console.log('No winner yet...');
@@ -44,7 +45,6 @@ const Players: { player1: string; player2: string; winner: string | undefined } 
             const nextSquares = value.slice();
             let currentPlayer: string = '';
             console.log({nextSquares});
-            Players.winner = calculateWinner(value)
             if (turn === 0){
                 nextSquares[index] = Players.player1;
                 setValue(nextSquares);
@@ -60,8 +60,13 @@ const Players: { player1: string; player2: string; winner: string | undefined } 
         }
     }
 
+    useEffect(() => {
+        calculateWinner(value);
+    }, [value]);
+
     return (
         <>
+            {Players.winner ? <h2 className="winner">Winner: {Players.winner}</h2> : null}
             <div className="table-row">
                 <Square value={value[0]} onSquareClick={() => handleSquareClick(0)} />
                 <Square value={value[1]} onSquareClick={() => handleSquareClick(1)} />
