@@ -19,6 +19,12 @@
 }
 .game{
   display: inline-flex;
+  gap: 2px;
+  justify-content: center;
+  width: min-content;
+}
+.game-menu{
+  display: flex;
   gap: 100px;
   justify-content: center;
 }

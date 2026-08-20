@@ -8,7 +8,7 @@ function App() {
   return (
     <>
     <h1>Tic Tac Toe</h1>
-    <div className="game">
+    <div className="game-menu">
       <div className="left-panel">
         <h2>Player 1: X</h2>
       </div>
