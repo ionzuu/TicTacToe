@@ -1,4 +1,5 @@
 import { useState} from 'react';
+import type { Players } from '../gameInterfaces';
 
 interface SquareClickResult {
     turn: number;
@@ -10,17 +11,12 @@ interface SquareClickResult {
     };
 }
 
-function useSquareClick(index: any): SquareClickResult {
-     const Players = {
-         player1: 'X',
-         player2: 'O'
-     };
-     let currentPlayer: string;
-     
-     
-     const [turn, setTurn]: [number, (turn: number) => void] = useState(0);
-     const [value, setValue]: [string[], (value: string[]) => void] = useState(Array(9).fill(' '));
-     const nextSquares = value.slice();
+function useSquareClick(index: number, Players: Players): SquareClickResult {
+    const [turn, setTurn]: [number, (turn: number) => void] = useState(0);
+    const [value, setValue]: [string[], (value: string[]) => void] = useState(Array(9).fill(' '));
+    
+    let currentPlayer: string;
+    const nextSquares = value.slice();
     
     
     if (turn === 0){

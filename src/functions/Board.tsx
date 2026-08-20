@@ -1,16 +1,17 @@
 import { useEffect, useState, type JSX } from 'react';
-import Square from './Square';
+import button from './Square';
+import type {Players} from '../gameInterfaces';
+import { handleSquareClick } from '../hooks/useSquareClick';
 // import {handleSquareClick} from '../hooks/useSquareClick';
 
-const Players: { player1: string; player2: string; winner: string | undefined } = {
-    player1: 'X',
-    player2: 'O',
-    winner: '',
-};
+// const Players: { player1: string; player2: string; winner: string | undefined } = {
+//     player1: 'X',
+//     player2: 'O',
+//     winner: '',
+// };
     
-    export default function Board(): JSX.Element {
-        const [turn, setTurn]   :   [number,    (turn: number)      => void] = useState(0);
-        const [value, setValue] :   [string[],  (value: string[])   => void] = useState(Array(9).fill(''));
+    export default function Board(Players: Players): JSX.Element {
+        console.log('Board component rendered with Players:', Players);
 
         function calculateWinner(value: string[]): JSX.Element | undefined {
         const wins = [
@@ -41,49 +42,45 @@ const Players: { player1: string; player2: string; winner: string | undefined } 
         }
     }
 
-        function handleSquareClick(index: number): any {
-            const nextSquares = value.slice();
-            let currentPlayer: string = '';
-            console.log({nextSquares});
-            if (turn === 0){
-                nextSquares[index] = Players.player1;
-                setValue(nextSquares);
-                setTurn(1);
-                currentPlayer = Players.player1;
-            } else {
+    //     function handleSquareClick(index: number): any {
+    //         const nextSquares = value.slice();
+    //         let currentPlayer: string = '';
+    //         console.log({nextSquares});
+    //         if (turn === 0){
+    //             nextSquares[index] = Players.player1;
+    //             setValue(nextSquares);
+    //             setTurn(1);
+    //             currentPlayer = Players.player1;
+    //         } else {
 
-            nextSquares[index] = Players.player2;
-            setValue(nextSquares);
-            setTurn(0);
-            currentPlayer = Players.player2;
-            // Players.winner = calculateWinner(value)
-        }
-    }
-
-    useEffect(() => {
-        calculateWinner(value);
-    }, [value]);
+    //         nextSquares[index] = Players.player2;
+    //         setValue(nextSquares);
+    //         setTurn(0);
+    //         currentPlayer = Players.player2;
+    //         // Players.winner = calculateWinner(value)
+    //     }
+    // }
+    // useEffect(() => {
+    //     calculateWinner(value);
+    // }, [value]);
 
     return (
         <>
             {Players.winner ? <h2 className="winner">Winner: {Players.winner}</h2> : null}
             <div className="table-row">
-                <Square value={value[0]} onSquareClick={() => handleSquareClick(0)} />
-                <Square value={value[1]} onSquareClick={() => handleSquareClick(1)} />
-                <Square value={value[2]} onSquareClick={() => handleSquareClick(2)} />
+                <button className="square" onClick={() => handleSquareClick(0, Players)} />  
+                <button className="square" onClick={() => handleSquareClick(1, Players)} />
+                <button className="square" onClick={() => handleSquareClick(2, Players)} />
             </div>
             <div className="table-row">
-                <Square value={value[3]} onSquareClick={() => handleSquareClick(3)} />
-                <Square value={value[4]} onSquareClick={() => handleSquareClick(4)} />
-                <Square value={value[5]} onSquareClick={() => handleSquareClick(5)} />
+                <button className="square" onClick={() => handleSquareClick(3, Players)} />
+                <button className="square" onClick={() => handleSquareClick(4, Players)} />
+                <button className="square" onClick={() => handleSquareClick(5, Players)} />
             </div>
             <div className="table-row">
-                <Square value={value[6]} onSquareClick={() => handleSquareClick(6)} />
-                <Square value={value[7]} onSquareClick={() => handleSquareClick(7)} />
-                <Square value={value[8]} onSquareClick={() => handleSquareClick(8)} />
-            </div>
-            <div>
-                <h2>Turn: {turn === 0 ? Players.player1 : Players.player2}</h2>
+                <button className="square" onClick={() => handleSquareClick(6, Players)} />
+                <button className="square" onClick={() => handleSquareClick(7, Players)} />
+                <button className="square" onClick={() => handleSquareClick(8, Players)} />
             </div>
         </>
 );

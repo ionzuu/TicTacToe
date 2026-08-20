@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Board from './functions/Board'
+import Game from './functions/Game';
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
         <h2>Player 1: X</h2>
       </div>
       <div className="center-panel">
-        <Board />
+        <Game />
       </div>
       <div className="right-panel">
         <h2>Player 2: O</h2>
