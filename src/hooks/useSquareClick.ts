@@ -6,7 +6,7 @@ interface SquareClickResult {
     value: string[];
     currentPlayer: string;
     Players: Players;
-    handleSquareClick: (index: number) => void; // El componente usará esto
+    handleSquareClick: (index: number) => void;
 }
 
 export default function useSquareClick(Players: Players): SquareClickResult {
