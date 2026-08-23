@@ -4,10 +4,16 @@ import useSquareClick from '../hooks/useSquareClick';
     
     export default function Board({Players}: { Players: Players }): JSX.Element {
         console.log('Board component rendered with Players:', Players);
-        const {turn, value, currentPlayer, handleSquareClick} = useSquareClick(Players);
-        console.log('Current turn:', turn, 'Current value:', value, 'Current player:', currentPlayer);
-    return (
-        <>
+        const {winner, value, handleSquareClick} = useSquareClick(Players);
+        if (winner && winner !== '') {
+            return (
+                    <div className="game"><h2 className="winner">Winner: {Players.winner}</h2></div>
+            );
+        }
+        else{
+
+            return (
+                <>
             <div className="table-row">
                 <button className="square" onClick={() => handleSquareClick(0)}>{value[0]}</button>  
                 <button className="square" onClick={() => handleSquareClick(1)}>{value[1]}</button>
@@ -25,4 +31,5 @@ import useSquareClick from '../hooks/useSquareClick';
             </div>
         </>
 );
+}
 }

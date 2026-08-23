@@ -1,7 +1,6 @@
 import type { Players } from "../gameInterfaces";
-import useSquareClick from "./useSquareClick";
 
- export default function calculateWinner(players: Players) {
+ export default function calculateWinner(players: Players, value: string[]): string | undefined {
         const wins = [
             [0, 1, 2],
             [3, 4, 5],
@@ -12,21 +11,21 @@ import useSquareClick from "./useSquareClick";
             [0, 4, 8],
             [2, 4, 6]
         ];
-        const {  turn, value, currentPlayer, Players, handleSquareClick  } = useSquareClick(players);
         console.log('Calculating winner...');
-        console.log(value);
-
-        for (let i = 0; i < wins.length; i++) {
-            const [a, b, c] = wins[i];
-            console.log(`Checking combination: ${a}, ${b}, ${c}`);
-            if(value[a] !== '' && value[a] === value[b] && value[a] === value[c]) {
-                Players.winner = value[a];
-                console.log('Winner found:', Players.winner);
-                alert(`Winner: ${Players.winner}`);
-                return Players.winner;
-            }
-            else{
-                console.log('No winner yet...');
+        if(value.every(square => square === ' ')) {
+            console.log('No moves made yet.');
+            return undefined;
+        }else{
+            for (let i = 0; i < wins.length; i++) {
+                const [a, b, c] = wins[i];
+                if(value[a] !== '' && value[a] !== ' ' && value[a] === value[b] && value[a] === value[c]) {
+                    players.winner = value[a];
+                    console.log('Winner found:', players.winner);
+                    return players.winner;
+                }
+                else{
+                    console.log('No winner yet...');
+                }
             }
         }
     }
