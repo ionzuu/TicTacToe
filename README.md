@@ -1,32 +1,34 @@
-# React + TypeScript + Vite
+# ❌⭕ Tic-Tac-Toe — React 19 + TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modular, responsive, and strictly typed Tic-Tac-Toe game built with **React 19**, **TypeScript**, and **CSS3**.
 
-Currently, two official plugins are available:
+This project was built with a strong focus on frontend architecture best practices, separation of concerns, derived state, and custom hooks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **React 19 & Functional Components:** Modern React patterns for optimal performance without unnecessary re-renders.
+* **Strict TypeScript:** Full typing for components, props, events, and domain logic (`SquareValue = 'X' | 'O' | null`).
+* **Optimized Derived State:** Instant winner and draw calculation performed directly during render cycles (avoiding `useEffect` overhead or redundant state).
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 🛠️ Tech Stack
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+* **Frontend:** React 19, TypeScript
+* **Styling:** CSS3
+* **Build Tool:** Vite
+* **Version Control:** Git & GitHub
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── functions/       # UI Components (Square, Board, Status, etc.)
+├── hooks/            # Custom Hooks (calculateWinnerm useSquareClicks)
+├── types/            # TypeScript definitions & interfaces
+├── App.tsx           # Main application entry component
+└── main.tsx          # Application bootstrap
