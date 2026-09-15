@@ -4,14 +4,18 @@ import useSquareClick from '../hooks/useSquareClick';
     
     export default function Board({Players}: { Players: Players }): JSX.Element {
         console.log('Board component rendered with Players:', Players);
-        const {winner, value, handleSquareClick} = useSquareClick(Players);
+        const {winner, value, handleSquareClick, handleResetGame} = useSquareClick(Players);
         if (winner && winner !== '') {
             return (
-                    <div className="game"><h2 className="winner">Winner: {Players.winner}</h2></div>
+                    <div className="game" onClick={() => handleResetGame()}><h2 className="winner">Winner: {Players.winner}</h2></div>
             );
         }
-        else{
-
+        else if (Players.winner === 'Draw') {
+            return (
+                <div className="game" onClick={() => handleResetGame()}><h2 className="winner">Draw!</h2></div>
+            );
+        }
+        else {
             return (
                 <>
             <div className="table-row">

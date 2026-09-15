@@ -11,11 +11,17 @@ import type { Players } from "../gameInterfaces";
             [0, 4, 8],
             [2, 4, 6]
         ];
+        
         console.log('Calculating winner...');
         if(value.every(square => square === ' ')) {
             console.log('No moves made yet.');
             return undefined;
-        }else{
+        }else if(value.every(square => square !== ' ') && !players.winner) {
+            players.winner = 'Draw';
+            console.log('Game is a draw.');
+            return players.winner;
+        }
+        else{
             for (let i = 0; i < wins.length; i++) {
                 const [a, b, c] = wins[i];
                 if(value[a] !== '' && value[a] !== ' ' && value[a] === value[b] && value[a] === value[c]) {

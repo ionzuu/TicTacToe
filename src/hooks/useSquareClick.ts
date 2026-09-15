@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Players } from '../gameInterfaces';
 import calculateWinner from './calculateWinner';
 
@@ -9,6 +9,7 @@ interface SquareClickResult {
     Players: Players;
     winner: string | undefined;
     handleSquareClick: (index: number) => void;
+    handleResetGame: () => void;
 }
 
 export default function useSquareClick(Players: Players): SquareClickResult {
@@ -18,7 +19,6 @@ export default function useSquareClick(Players: Players): SquareClickResult {
 
     const currentPlayer = turn === 0 ? Players.player1 : Players.player2;
     const winner = calculateWinner(Players, value);
-
 
     function handleSquareClick(index: number): void {
         if (value[index] !== ' ') return;
@@ -36,5 +36,11 @@ export default function useSquareClick(Players: Players): SquareClickResult {
         }
     }
 
-    return { winner, turn, value, currentPlayer, Players, handleSquareClick };
+    function handleResetGame(): void {
+        setValue(Array(9).fill(' '));
+        setTurn(0);
+        Players.winner = '';
+    }
+
+    return { winner, turn, value, currentPlayer, Players, handleSquareClick, handleResetGame };
 }
